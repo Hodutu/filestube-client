@@ -4,7 +4,7 @@ var Filestube_API = (function() {
   var url = 'http://www.filestube.to/query.html?q=';
   var pages = 0;
   var currentPage = 1;
-  var maxPages = 2;//Infinity;
+  var maxPages = Infinity;
 
   var totalUrls = [];
   var mainCallback = function(e) { console.log('Sum tink rong', e); };
@@ -48,7 +48,6 @@ var Filestube_API = (function() {
               var link = result.querySelector('.rL').href;
               link = 'http://www.filestube.to/' + link.split('/').pop();
               urls.push(link);
-              console.log('OK!', link);
             }
           } catch (e) {
             console.log('ERROR: ', e);
@@ -85,14 +84,11 @@ var Filestube_API = (function() {
     }
 
     url = url + term + reqOptions;
-    console.log('Starting link:', url);
-
     parsePage(url, handlePageParsingResults);
 
   };
 
   var stripFinalLink = function(url, callback) {
-    console.log('Link proceeded: ', url);
     if (url) {
       jsdom.env({
         url: url,
@@ -101,16 +97,29 @@ var Filestube_API = (function() {
           if (d.querySelector('#copy_paste_links')) {
             callback(d.querySelector('#copy_paste_links').textContent);
           } else {
-            callback(false);
+            callback(0);
           }
         }
       });
     } else {
-      callback(false);
+      callback(0);
     }
   };
 
-  var getOne = function(){};
+  var getOne = function(phrase, options, callback){
+    maxPages = 1;
+    var currentLink = 0;
+    getLinks(phrase, options, function(links){
+      stripFinalLink(links[currentLink], function stripFinal_cb(resultLink){
+        if (resultLink === 0 && links[currentLink]) {
+          currentLink++;
+          stripFinalLink(links[currentLink], stripFinal_cb);
+        } else {
+          callback(resultLink);
+        }
+      });
+    });
+  };
 
   return {
     getLinks: getLinks,
@@ -121,4 +130,4 @@ var Filestube_API = (function() {
 
 module.exports = Filestube_API;
 
-Filestube_API.getLinks("Czterej Pancerni i pies", {}, function(e){ console.log('o: ', e);});
+Filestube_API.getOne("warszawa photo", {}, function(e){ console.log('o: ', e);});
