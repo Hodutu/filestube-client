@@ -4,6 +4,8 @@ var Filestube_API = (function() {
   var url = 'http://www.filestube.to/query.html?q=';
   var pages = 0;
   var currentPage = 1;
+  var maxPages = 2;//Infinity;
+
   var totalUrls = [];
   var mainCallback = function(e) { console.log('Sum tink rong', e); };
 
@@ -16,6 +18,7 @@ var Filestube_API = (function() {
         if (pages === 0) {
           if (d.querySelector('.pgr')) {
             pages = d.querySelector('.pgr').querySelectorAll('a').length;
+            pages = Math.min(maxPages, pages);
             console.log('Number of pages:', pages);
           } else {
             pages = 1;
@@ -107,6 +110,8 @@ var Filestube_API = (function() {
     }
   };
 
+  var getOne = function(){};
+
   return {
     getLinks: getLinks,
     stripFinalLink: stripFinalLink,
@@ -116,4 +121,4 @@ var Filestube_API = (function() {
 
 module.exports = Filestube_API;
 
-Filestube_API.getOne("Czterej Pancerni i pies", {}, function(e){ console.log('o: ', e);});
+Filestube_API.getLinks("Czterej Pancerni i pies", {}, function(e){ console.log('o: ', e);});
