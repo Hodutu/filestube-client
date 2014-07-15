@@ -109,10 +109,11 @@ var Filestube_API = (function() {
 
   return {
     getLinks: getLinks,
-    stripFinalLink: stripFinalLink
+    stripFinalLink: stripFinalLink,
+    getOne: getOne
   };
 })();
 
 module.exports = Filestube_API;
 
-Filestube_API.getLinks("Czterej Pancerni i pies", {}, function(e){ console.log('o: ', e);});
+Filestube_API.getOne("Czterej Pancerni i pies", {}, function(e){ console.log('o: ', e);});
