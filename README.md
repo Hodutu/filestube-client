@@ -8,7 +8,7 @@ Draft of the api:
   getMany(quantity, phrase, options, cb);
   forEach(phrase,oprions, cb);
 
-  cb(error, data) {
+  cb(error, data){
     // data is an Array
   };
 ```
