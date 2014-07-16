@@ -9,6 +9,9 @@ var Filestube_API = (function() {
   var totalUrls = [];
   var mainCallback = function(e) { console.log('Sum tink rong', e); };
 
+  var cssSelectors = {
+    pagintion: '.pgr'
+  }
   var parsePage = function(url, cb) {
     jsdom.env({
       url: url,
@@ -16,8 +19,8 @@ var Filestube_API = (function() {
         var d = window.document;
         var urls = [];
         if (pages === 0) {
-          if (d.querySelector('.pgr')) {
-            pages = d.querySelector('.pgr').querySelectorAll('a').length;
+          if (d.querySelector(cssSelectors.pagination)) {
+            pages = d.querySelector(cssSelectors.pagination).querySelectorAll('a').length;
             pages = Math.min(maxPages, pages);
           } else {
             pages = 1;
@@ -29,28 +32,9 @@ var Filestube_API = (function() {
 
         for (var i = 0, j = results.length; i< j; i++) {
           var result = results[i];
-          //console.log(result.querySelector('.resultDescription').textContent);
-
-          // var hasMoreParts;
-          // try {
-          //   hasMoreParts = (
-          //     result.textContent.indexOf('parts') > -1
-          //   );
-          // } catch (e) {
-          //   hasMoreParts = true;
-          // }
-          //
-          // var properEpisode = true;
-          //
-          // try {
-          //   if (!hasMoreParts && properEpisode) {
-              var link = result.querySelector('.rL').href;
-              link = 'http://www.filestube.to/' + link.split('/').pop();
-              urls.push(link);
-          //   }
-          // } catch (e) {
-          //   console.log('ERROR: ', e);
-          // }
+          var link = result.querySelector('.rL').href;
+          link = 'http://www.filestube.to/' + link.split('/').pop();
+          urls.push(link);
 
         }
 
