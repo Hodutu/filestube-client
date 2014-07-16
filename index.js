@@ -19,7 +19,6 @@ var Filestube_API = (function() {
           if (d.querySelector('.pgr')) {
             pages = d.querySelector('.pgr').querySelectorAll('a').length;
             pages = Math.min(maxPages, pages);
-            console.log('Number of pages:', pages);
           } else {
             pages = 1;
           }
@@ -32,26 +31,26 @@ var Filestube_API = (function() {
           var result = results[i];
           //console.log(result.querySelector('.resultDescription').textContent);
 
-          var hasMoreParts;
-          try {
-            hasMoreParts = (
-              result.textContent.indexOf('parts') > -1
-            );
-          } catch (e) {
-            hasMoreParts = true;
-          }
-
-          var properEpisode = true;
-
-          try {
-            if (!hasMoreParts && properEpisode) {
+          // var hasMoreParts;
+          // try {
+          //   hasMoreParts = (
+          //     result.textContent.indexOf('parts') > -1
+          //   );
+          // } catch (e) {
+          //   hasMoreParts = true;
+          // }
+          //
+          // var properEpisode = true;
+          //
+          // try {
+          //   if (!hasMoreParts && properEpisode) {
               var link = result.querySelector('.rL').href;
               link = 'http://www.filestube.to/' + link.split('/').pop();
               urls.push(link);
-            }
-          } catch (e) {
-            console.log('ERROR: ', e);
-          }
+          //   }
+          // } catch (e) {
+          //   console.log('ERROR: ', e);
+          // }
 
         }
 
@@ -80,7 +79,11 @@ var Filestube_API = (function() {
     var reqOptions = '';
 
     if (options.type) {
-      reqOptions = '&select=' + options.type;
+      reqOptions += '&select=' + options.type;
+    }
+
+    if (options.size) {
+      reqOptions += '&size=' + options.size;
     }
 
     url = url + term + reqOptions;
@@ -115,7 +118,10 @@ var Filestube_API = (function() {
           currentLink++;
           stripFinalLink(links[currentLink], stripFinal_cb);
         } else {
-          callback(resultLink);
+          callback(resultLink.split('\r\n').filter(function(element){
+            if (element !== '')
+              return element;
+          }));
         }
       });
     });
