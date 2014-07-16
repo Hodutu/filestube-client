@@ -9,6 +9,6 @@ Draft of the api:
   forEach(phrase,oprions, cb);
 
   cb(error, data) {
-
+    // data is an Array
   };
 ```
