@@ -130,7 +130,7 @@ var Filestube_API = (function() {
     });
   };
 
-  var forEach = function(phrase, options, callback){
+  var getAll = function(phrase, options, callback){
     var links = [];
     getLinks(phrase, options, function(links){
       links.forEach(function(singleLink){
@@ -146,24 +146,9 @@ var Filestube_API = (function() {
     });
   };
 
-  var getAll = function(phrase, options, callback){
-    var finalLinks = [];
-    getLinks(phrase, options, function(links){
-      links.forEach(function(singleLink){
-        stripFinalLink(singleLink, function stripFinal_cb(resultLink){
-          if (resultLink !== 0) {
-            finalLinks.concat(resultLink);
-          }
-        });
-      });
-      callback(finalLinks);
-    });
-  };
-
   return {
     getOne: getOne,
-    getAll: getAll,
-    forEach: forEach
+    getAll: getAll
   };
 })();
 
