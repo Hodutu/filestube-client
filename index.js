@@ -127,13 +127,32 @@ var Filestube_API = (function() {
     });
   };
 
+  var forEach = function(phrase, options, callback){
+    var links = [];
+    getLinks(phrase, options, function(links){
+      links.forEach(function(singleLink){
+        stripFinalLink(singleLink, function stripFinal_cb(resultLink){
+          if (resultLink !== 0) {
+            callback(resultLink.split('\r\n').filter(function(element) {
+              if (element !== '')
+                return element;
+            }));
+          }
+        });
+      });
+    });
+  };
+
+  var getAll = function(phrase, options, callback){
+  };
+
   return {
-    getLinks: getLinks,
-    stripFinalLink: stripFinalLink,
-    getOne: getOne
+    getOne: getOne,
+    getAll: getAll,
+    forEach: forEach
   };
 })();
 
 module.exports = Filestube_API;
 
-Filestube_API.getOne("warszawa photo", {}, function(e){ console.log('o: ', e);});
+Filestube_API.forEach("czterej pancerni i pies", {}, function(e){ console.log('o: ', e);});
