@@ -118,10 +118,13 @@ var Filestube_API = (function() {
           currentLink++;
           stripFinalLink(links[currentLink], stripFinal_cb);
         } else {
-          callback(resultLink.split('\r\n').filter(function(element){
-            if (element !== '')
-              return element;
-          }));
+          if (resultLink !== 0) {
+            resultLink = resultLink.split('\r\n').filter(function(element){
+              if (element !== '')
+                return element;
+            });
+          }
+          callback(resultLink);
         }
       });
     });
@@ -144,6 +147,17 @@ var Filestube_API = (function() {
   };
 
   var getAll = function(phrase, options, callback){
+    var finalLinks = [];
+    getLinks(phrase, options, function(links){
+      links.forEach(function(singleLink){
+        stripFinalLink(singleLink, function stripFinal_cb(resultLink){
+          if (resultLink !== 0) {
+            finalLinks.concat(resultLink);
+          }
+        });
+      });
+      callback(finalLinks);
+    });
   };
 
   return {
@@ -155,4 +169,4 @@ var Filestube_API = (function() {
 
 module.exports = Filestube_API;
 
-Filestube_API.forEach("czterej pancerni i pies", {}, function(e){ console.log('o: ', e);});
+Filestube_API.forEach("grand theft auto 5", {}, function(e){ console.log('o: ', e);});
