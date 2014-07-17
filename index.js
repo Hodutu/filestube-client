@@ -155,15 +155,22 @@ var Filestube_API = (function() {
   };
 
   var getOne = function(phrase, options, callback){
+    // we are interested only in one link in this method so let's parse just
+    // first page of the results
     maxPages = 1;
     var currentLink = 0;
     getLinks(phrase, options, function(links){
       stripFinalLink(links[currentLink], function stripFinal_cb(resultLink){
+        // if there was an error (resultLink equal 0) but we still have more
+        // links, parse moar of them!
         if (resultLink === 0 && links[currentLink]) {
           currentLink++;
           stripFinalLink(links[currentLink], stripFinal_cb);
         } else {
+          // if we have proper links array
           if (resultLink !== 0) {
+            // remove white chars at the end of the every line, make an array
+            // from the string & remove empty elements.
             resultLink = resultLink.split('\r\n').filter(function(element){
               if (element !== '')
                 return element;
@@ -175,6 +182,8 @@ var Filestube_API = (function() {
     });
   };
 
+  // Works similar to getOne but we parse all of the results for all of
+  // the pages
   var getAll = function(phrase, options, callback){
     var links = [];
     getLinks(phrase, options, function(links){
@@ -198,5 +207,3 @@ var Filestube_API = (function() {
 })();
 
 module.exports = Filestube_API;
-
-Filestube_API.getAll('himym', {}, function(e){ console.log('o:', e)});
