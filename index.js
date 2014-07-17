@@ -140,5 +140,3 @@ var Filestube_API = (function() {
 })();
 
 module.exports = Filestube_API;
-
-Filestube_API.getOne("grand theft auto 5", {}, function(e){ console.log('o: ', e);});
