@@ -111,6 +111,9 @@ var Filestube_API = (function() {
 
     // change spaces to `+`
     term = term.replace(/\s/g, '+');
+
+    // options support
+    // XXX: Add SMART support for all of the options
     var reqOptions = '';
 
     if (options.type) {
@@ -121,7 +124,9 @@ var Filestube_API = (function() {
       reqOptions += '&size=' + options.size;
     }
 
+    // Create proper URL to ask for the content
     url = url + term + reqOptions;
+    // And parse it. Set handlePageParsingResults as callback
     parsePage(url, handlePageParsingResults);
 
   };
