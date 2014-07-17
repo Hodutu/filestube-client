@@ -131,6 +131,8 @@ var Filestube_API = (function() {
 
   };
 
+  // This function gets the filestube.to page and looks for a final, direct
+  // link to the file we are interested in. 
   var stripFinalLink = function(url, callback) {
     if (url) {
       jsdom.env({
