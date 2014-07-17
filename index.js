@@ -97,13 +97,18 @@ var Filestube_API = (function() {
     }
   };
 
-
+  // This function gets links to the pages with final links, so all we have
+  // passed to the callback from here are links to filestube.to pages we need
+  // to parse then to get final links from them
   var getLinks = function(term, options, callback) {
+    // Assign the callback to the `global` (in terms of the module scope in
+    // here) so it can be accessed from anywhere inside the module
     mainCallback = callback;
+    // Reset some variables
     pages = 0;
     currentPage = 1;
-    url = 'http://www.filestube.to/query.html?q=';
     totalUrls = [];
+
     term = term.replace(/\s/g, '+');
     var reqOptions = '';
 
