@@ -81,15 +81,22 @@ var Filestube_API = (function() {
     });
   };
 
+  // This function is responsible for checking if we have more pages to
+  // download & parse or we should finish and fire main callback with results
   var handlePageParsingResults = function(urls) {
+    // Add the url to those we already have
     totalUrls = totalUrls.concat(urls);
+    // if we still have pages to handle
     if (currentPage < pages) {
       currentPage++;
+      // Download & parse another page of results
       parsePage(url + '&page=' + currentPage, handlePageParsingResults);
     } else {
+      // If not pass the Array of links to the main callback
       mainCallback(totalUrls);
     }
   };
+
 
   var getLinks = function(term, options, callback) {
     mainCallback = callback;
