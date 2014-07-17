@@ -20,30 +20,54 @@ var Filestube_API = (function() {
   // Callback that is called after all the computation is done
   var mainCallback = function(e) { console.log('Sum tink rong', e); };
 
+  // Selectors (ids and classes) for the DOM element of filestube.to page.
   var cssSelectors = {
     pagintion: '.pgr',
     result: '.r',
     resultsLink: '.rL',
     copyPasteLink: '#copy_paste_links'
   }
+
+  // This function parses the content of the main search page (the one with all
+  // the search results)
   var parsePage = function(url, cb) {
+    // Using jsdom we ask for the page on the given address.
     jsdom.env({
       url: url,
       done: function(err, window) {
         var d = window.document;
+        // This Array will store all the urls we are interested in from
+        // given site
         var urls = [];
+        // If `pages` var is equal 0, than we've just started and we don't know
+        // how many pages of results we have for our query
         if (pages === 0) {
+          // If there is a pagination panel with page numbers, it means we have
+          // more than 1 page of results
           if (d.querySelector(cssSelectors.pagination)) {
+            // So let's calculate how many links (<a> elements) are in the
+            // pagination panel
             pages = d.querySelector(cssSelectors.pagination).querySelectorAll('a').length;
+
+            // If we don't want to parse all the pages of results (for
+            // instance - we are interested just in one result), then let's
+            // limit number of pages
             pages = Math.min(maxPages, pages);
           } else {
+            // If pagination panel is not present in the ODM three of the
+            // result page it means we have just one page of results
             pages = 1;
           }
 
         }
 
+        // Code below will be executed for all the pages with results, not only
+        // the first one (like the pagination code)
+
+        // Let's grab all the results form the page...
         var results = d.querySelectorAll(cssSelectors.result);
 
+        // ... and iterate through them.
         for (var i = 0, j = results.length; i< j; i++) {
           var result = results[i];
           var link = result.querySelector(cssSelectors.resultsLink).href;
