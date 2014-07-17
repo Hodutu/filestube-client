@@ -132,13 +132,16 @@ var Filestube_API = (function() {
   };
 
   // This function gets the filestube.to page and looks for a final, direct
-  // link to the file we are interested in. 
+  // link to the file we are interested in.
   var stripFinalLink = function(url, callback) {
+    // Parse only when there is any URL (Sometimes there are strange results
+    // when parsing main page and we can end up with url that doesn't exist)
     if (url) {
       jsdom.env({
         url: url,
         done: function(err, window) {
           var d = window.document;
+          // If there is a textfield with links, pass them to callback
           if (d.querySelector(cssSelectors.copyPasteLink)) {
             callback(d.querySelector(cssSelectors.copyPasteLink).textContent);
           } else {
