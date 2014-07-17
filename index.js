@@ -70,12 +70,12 @@ var Filestube_API = (function() {
         // ... and iterate through them.
         for (var i = 0, j = results.length; i< j; i++) {
           var result = results[i];
+          // Find a link in the `result` DOM element
           var link = result.querySelector(cssSelectors.resultsLink).href;
-          link = 'http://www.filestube.to/' + link.split('/').pop();
+          // Add the link to the Array
           urls.push(link);
-
         }
-
+        // pass all the links to pages with results to the callback
         cb(urls);
       }
     });
@@ -175,3 +175,5 @@ var Filestube_API = (function() {
 })();
 
 module.exports = Filestube_API;
+
+Filestube_API.getAll('himym', {}, function(e){ console.log('o:', e)});
