@@ -5,5 +5,8 @@
   "repository": "https://github.com/michalbe/filestube-client",
   "dependencies": {
     "jsdom": "^0.11.1"
+  },
+  "devDependencies": {
+    "precommit-hook": "^1.0.2"
   }
 }
