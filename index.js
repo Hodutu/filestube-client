@@ -1,9 +1,15 @@
 var jsdom = require('jsdom');
 
 var Filestube_API = (function() {
+  // query.html is the page where the browser pings with search query
   var url = 'http://www.filestube.to/query.html?q=';
+  // How many pages of results this search query has?
   var pages = 0;
+  // Number of the page that is currently proceeded
   var currentPage = 1;
+  // How many pages are we intrerested in? If we want just one link (getOne) we
+  // don't need all the pages, one will be enough. In other cases we try to get
+  // as many as possible
   var maxPages = Infinity;
 
   var totalUrls = [];
