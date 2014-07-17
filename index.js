@@ -12,7 +12,12 @@ var Filestube_API = (function() {
   // as many as possible
   var maxPages = Infinity;
 
+  // Array with all the URLs that will be returned to the callback. That's not
+  // the most clever name for the variable but it's 5AM and I worked for 20h
+  // today so don't expect me to behave rationally now.
   var totalUrls = [];
+
+  // Callback that is called after all the computation is done
   var mainCallback = function(e) { console.log('Sum tink rong', e); };
 
   var cssSelectors = {
