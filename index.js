@@ -1,3 +1,5 @@
+'use strict';
+
 var jsdom = require('jsdom');
 
 var Filestube_API = (function() {
@@ -26,7 +28,7 @@ var Filestube_API = (function() {
     result: '.r',
     resultsLink: '.rL',
     copyPasteLink: '#copy_paste_links'
-  }
+  };
 
   // This function parses the content of the main search page (the one with all
   // the search results)
@@ -47,7 +49,8 @@ var Filestube_API = (function() {
           if (d.querySelector(cssSelectors.pagination)) {
             // So let's calculate how many links (<a> elements) are in the
             // pagination panel
-            pages = d.querySelector(cssSelectors.pagination).querySelectorAll('a').length;
+            pages = d.querySelector(cssSelectors.pagination)
+                     .querySelectorAll('a').length;
 
             // If we don't want to parse all the pages of results (for
             // instance - we are interested just in one result), then let's
@@ -172,8 +175,9 @@ var Filestube_API = (function() {
             // remove white chars at the end of the every line, make an array
             // from the string & remove empty elements.
             resultLink = resultLink.split('\r\n').filter(function(element){
-              if (element !== '')
+              if (element !== '') {
                 return element;
+              }
             });
           }
           callback(resultLink);
@@ -185,14 +189,14 @@ var Filestube_API = (function() {
   // Works similar to getOne but we parse all of the results for all of
   // the pages
   var getAll = function(phrase, options, callback){
-    var links = [];
     getLinks(phrase, options, function(links){
       links.forEach(function(singleLink){
         stripFinalLink(singleLink, function stripFinal_cb(resultLink){
           if (resultLink !== 0) {
             callback(resultLink.split('\r\n').filter(function(element) {
-              if (element !== '')
+              if (element !== '') {
                 return element;
+              }
             }));
           }
         });
