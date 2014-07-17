@@ -37,6 +37,7 @@ var Filestube_API = (function() {
     jsdom.env({
       url: url,
       done: function(err, window) {
+        console.log(err);
         var d = window.document;
         // This Array will store all the urls we are interested in from
         // given site
@@ -111,6 +112,7 @@ var Filestube_API = (function() {
     pages = 0;
     currentPage = 1;
     totalUrls = [];
+    url = 'http://www.filestube.to/query.html?q=';
 
     // change spaces to `+`
     term = term.replace(/\s/g, '+');
