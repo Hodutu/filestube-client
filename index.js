@@ -37,7 +37,6 @@ var Filestube_API = (function() {
     jsdom.env({
       url: url,
       done: function(err, window) {
-        console.log(err);
         var d = window.document;
         // This Array will store all the urls we are interested in from
         // given site
