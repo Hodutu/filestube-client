@@ -20,7 +20,7 @@ var teardown = function(){
   nock.restore();
 };
 
-var elementsOnPage = 5;
+//var elementsOnPage = 5;
 
 // getOne result with only one file
 list = require('./mocks/list-one-page.js');
@@ -35,12 +35,3 @@ FilestubeAPI.getOne('stawka wieksza niz zycie', {}, function(data){
 
   teardown();
 });
-
-// // getOne result with only one file
-// list = require('./mocks/list-one-page.js');
-// final = require('./mocks/final-multiple-links')
-// initMock(require(list, final);
-// FilestubeAPI.getOne('stawka wieksza niz zycie', {}, function(data){
-//   assert.equal(data[0], 'http://blablablabla.jczc/files/w2q9vfcl/Zbych.Andrzej-Stawka.wieksza.niz');
-// });
-// teardown();
