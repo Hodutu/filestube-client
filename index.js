@@ -109,6 +109,7 @@ var Filestube_API = (function() {
     currentPage = 1;
     totalUrls = [];
 
+    // change spaces to `+`
     term = term.replace(/\s/g, '+');
     var reqOptions = '';
 
