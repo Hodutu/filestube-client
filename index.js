@@ -10,7 +10,10 @@ var Filestube_API = (function() {
   var mainCallback = function(e) { console.log('Sum tink rong', e); };
 
   var cssSelectors = {
-    pagintion: '.pgr'
+    pagintion: '.pgr',
+    result: '.r',
+    resultsLink: '.rL',
+    copyPasteLink: '#copy_paste_links'
   }
   var parsePage = function(url, cb) {
     jsdom.env({
@@ -28,11 +31,11 @@ var Filestube_API = (function() {
 
         }
 
-        var results = d.querySelectorAll('.r');
+        var results = d.querySelectorAll(cssSelectors.result);
 
         for (var i = 0, j = results.length; i< j; i++) {
           var result = results[i];
-          var link = result.querySelector('.rL').href;
+          var link = result.querySelector(cssSelectors.resultsLink).href;
           link = 'http://www.filestube.to/' + link.split('/').pop();
           urls.push(link);
 
@@ -81,8 +84,8 @@ var Filestube_API = (function() {
         url: url,
         done: function(err, window) {
           var d = window.document;
-          if (d.querySelector('#copy_paste_links')) {
-            callback(d.querySelector('#copy_paste_links').textContent);
+          if (d.querySelector(cssSelectors.copyPasteLink)) {
+            callback(d.querySelector(cssSelectors.copyPasteLink).textContent);
           } else {
             callback(0);
           }
@@ -138,4 +141,4 @@ var Filestube_API = (function() {
 
 module.exports = Filestube_API;
 
-Filestube_API.forEach("grand theft auto 5", {}, function(e){ console.log('o: ', e);});
+Filestube_API.getOne("grand theft auto 5", {}, function(e){ console.log('o: ', e);});
