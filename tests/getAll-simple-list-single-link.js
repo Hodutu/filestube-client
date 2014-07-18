@@ -14,6 +14,7 @@ module.exports = {
       assert: function(data) {
         assert.equal(data.length, 5);
         data.forEach(function(element){
+          assert.equal(element.length, 1);
           assert.equal(
             element[0],
             'http://blablabla.jczc/file/w2q9vfcl/'+

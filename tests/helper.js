@@ -7,7 +7,8 @@ module.exports = function(options) {
   initMock(
     options.list,
     options.final,
-    options.repetitions
+    options.repetitions,
+    options.pages
   );
 
   FilestubeAPI[options.testedMethod](
