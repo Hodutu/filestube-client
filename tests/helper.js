@@ -4,7 +4,6 @@ var FilestubeAPI = require('../index');
 var initMock = require('./mocks/init-mock.js');
 
 module.exports = function(options) {
-  console.log(options);
   initMock(
     options.list,
     options.final,

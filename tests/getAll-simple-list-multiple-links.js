@@ -6,7 +6,7 @@ var assert = require('assert');
 // getOne result with only one file
 module.exports = {
   run: function(cb) {
-    var options = {
+    TESTHELPER({
       list: require('./mocks/list-one-page'),
       final: require('./mocks/final-multiple-links'),
       repetitions: 5,
@@ -25,8 +25,6 @@ module.exports = {
         });
       },
       cb: cb
-    };
-    console.log('w samym moduleeee', options);
-    TESTHELPER(options);
+    });
   }
 };
