@@ -6,7 +6,7 @@ var assert = require('assert');
 // getOne result with only one file
 module.exports = {
   run: function(cb) {
-    TESTHELPER({
+    var options = {
       list: require('./mocks/list-one-page'),
       final: require('./mocks/final-multiple-links'),
       repetitions: 5,
@@ -19,11 +19,14 @@ module.exports = {
           assert.equal(element.length, 1);
           assert.equal(
             element,
-            'http://blablabla.jczc/files/w2q9vfcl/Zbych.Andrzej-Stawka.wieksza.niz'
+            'http://blablabla.jczc/files/w2q9vfcl/'+
+            'Zbych.Andrzej-Stawka.wieksza.niz'
           );
         });
       },
       cb: cb
-    });
+    };
+    console.log('w samym moduleeee', options);
+    TESTHELPER(options);
   }
 };

@@ -1,6 +1,7 @@
 'use strict';
 
 var jsdom = require('jsdom');
+var async = require('async');
 
 var Filestube_API = (function() {
   // query.html is the page where the browser pings with search query
@@ -192,18 +193,19 @@ var Filestube_API = (function() {
   var getAll = function(phrase, options, callback){
     getLinks(phrase, options, function(links){
       var finalLinks = [];
-      links.forEach(function(singleLink, index){
+      async.forEach(links, function(singleLink, cb){
         stripFinalLink(singleLink, function stripFinal_cb(resultLink){
-          if (resultLink !== 0 && index < links.length) {
+          if (resultLink !== 0) {
             finalLinks.push(resultLink.split('\r\n').filter(function(element) {
               if (element !== '') {
                 return element;
               }
             }));
-          } else {
-            callback(finalLinks);
+            cb();
           }
         });
+      }, function(){
+        callback(finalLinks);
       });
     });
   };

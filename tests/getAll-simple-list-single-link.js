@@ -9,11 +9,11 @@ module.exports = {
     TESTHELPER({
       list: require('./mocks/list-one-page'),
       final: require('./mocks/final-single-link'),
-      repetitions: 4,
+      repetitions: 5,
       testedMethod: 'getAll',
       options: {},
       assert: function(data) {
-        assert.equal(data.length, 5);
+        assert.equal(data.length, 2);
       },
       cb: cb
     });

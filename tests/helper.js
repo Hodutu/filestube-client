@@ -4,6 +4,7 @@ var FilestubeAPI = require('../index');
 var initMock = require('./mocks/init-mock.js');
 
 module.exports = function(options) {
+  console.log(options);
   initMock(
     options.list,
     options.final,
@@ -13,7 +14,7 @@ module.exports = function(options) {
   FilestubeAPI[options.testedMethod](
     'stawka wieksza niz zycie',
     options.options || {},
-    function(data){
+    function(data) {
       options.assert(data);
       if (typeof options.cb === 'function') {
         options.cb();
