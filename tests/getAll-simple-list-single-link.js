@@ -13,7 +13,14 @@ module.exports = {
       testedMethod: 'getAll',
       options: {},
       assert: function(data) {
-        assert.equal(data.length, 2);
+        assert.equal(data.length, 5);
+        data.forEach(function(element){
+          assert.equal(
+            element[0],
+            'http://blablabla.jczc/files/w2q9vfcl/'+
+            'Zbych.Andrzej-Stawka.wieksza.niz'
+          );
+        });
       },
       cb: cb
     });
