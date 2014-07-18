@@ -21,7 +21,7 @@ module.exports = {
               link,
               'http://blablabla.jczc/files/w2q9vfcl/'+
               'ZbychAndrzej-Stawka.wieksza.niz'
-            )
+            );
           });
         });
       },
