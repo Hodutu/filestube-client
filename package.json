@@ -7,7 +7,7 @@
     "jsdom": "^0.11.1"
   },
   "scripts": {
-    "test": "node tests/filestube-client-test.js"
+    "test": "node tests/tests-index.js"
   },
   "devDependencies": {
     "assert": "^1.1.1",
