@@ -4,7 +4,8 @@
 var tests = [
   require('./getOne-simple-list-single-link.js'),
   require('./getOne-simple-list-multiple-links.js'),
-  require('./getAll-simple-list-single-link.js')
+  require('./getAll-simple-list-single-link.js'),
+  require('./getAll-simple-list-multiple-links.js')
 ];
 
 // All the tests need to run synchronously, so I created this simple
