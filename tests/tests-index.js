@@ -2,8 +2,8 @@
 
 // List of all the tests, filenames should be self explanatory
 var tests = [
-  require('./getOne-simple-list-single-link.js'),
-  require('./getOne-simple-list-multiple-links.js'),
+  // require('./getOne-simple-list-single-link.js'),
+  // require('./getOne-simple-list-multiple-links.js'),
   require('./getAll-simple-list-single-link.js')
 ];
 
@@ -12,7 +12,7 @@ var tests = [
 // the next one after previous have finished
 var runTest = function(index) {
   var cb = function(){};
-  if (index < tests.length-1) {
+  if (index < tests.length) {
     cb = function() {
       index++;
       runTest(index);

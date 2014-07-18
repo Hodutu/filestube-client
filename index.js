@@ -194,17 +194,16 @@ var Filestube_API = (function() {
       var finalLinks = [];
       links.forEach(function(singleLink, index){
         stripFinalLink(singleLink, function stripFinal_cb(resultLink){
-          if (resultLink !== 0 && index < links.length) {
+          if (resultLink !== 0) {
             finalLinks.push(resultLink.split('\r\n').filter(function(element) {
               if (element !== '') {
                 return element;
               }
             }));
-          } else {
-            callback(finalLinks);
           }
         });
       });
+      callback(finalLinks);
     });
   };
 
