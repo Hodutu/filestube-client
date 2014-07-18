@@ -4,7 +4,8 @@
   "author": "Michal Budzynski<michal@virtualdesign.pl>",
   "repository": "https://github.com/michalbe/filestube-client",
   "dependencies": {
-    "jsdom": "^0.11.1"
+    "jsdom": "^0.11.1",
+    "async": "^0.9.0"
   },
   "scripts": {
     "test": "node tests/tests-index.js"
