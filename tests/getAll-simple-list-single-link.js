@@ -17,8 +17,8 @@ module.exports = {
           assert.equal(element.length, 1);
           assert.equal(
             element[0],
-            'http://blablabla.jczc/file/w2q9vfcl/'+
-            'Zbych.Andrzej-Stawka.wieksza.niz'
+            'http://blablabla.jczc/files/w2q9vfcl/'+
+            'ZbychAndrzej-Stawka.wieksza.niz'
           );
         });
       },
