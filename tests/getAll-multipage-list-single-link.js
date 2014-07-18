@@ -3,7 +3,6 @@
 var TESTHELPER = require('./helper');
 var assert = require('assert');
 
-// getOne result with only one file
 module.exports = {
   run: function(cb) {
     TESTHELPER({

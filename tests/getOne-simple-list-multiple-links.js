@@ -3,7 +3,6 @@
 var TESTHELPER = require('./helper');
 var assert = require('assert');
 
-// getOne result with multiple files
 module.exports = {
   run: function(cb){
     TESTHELPER({
