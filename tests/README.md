@@ -95,6 +95,8 @@ initMock(
   pages // How many pages we want to support
 );
 ```
+
+### Helpers ###
 You don't need to understand what is going on in initMock, because of the helper located in `helper.js`. To create a new test you just need to create a new file and pass `options` object to the helper. This object describes how the test will behave:
 ``` javascript
 'use strict';
@@ -133,4 +135,24 @@ module.exports = {
     });
   }
 };
+```
+
+### Running tests ###
+To run the test you need to add it to the `tests` array in `tests-index.js`:
+```javascript
+// List of all the tests, filenames should be self explanatory
+var tests = [
+  require('./getOne-simple-list-single-link.js'),
+  require('./getOne-simple-list-multiple-links.js'),
+
+  require('./getAll-simple-list-single-link.js'),
+  require('./getAll-simple-list-multiple-links.js'),
+
+  require('./getAll-multipage-list-single-link.js'),
+  require('./getAll-multipage-list-multiple-links.js')
+];
+```
+Then, to run all the tests:
+```bash
+npm tests
 ```
