@@ -25,7 +25,7 @@ var Filestube_API = (function() {
 
   // Selectors (ids and classes) for the DOM element of filestube.to page.
   var cssSelectors = {
-    pagintion: '.pgr',
+    pagination: '.pgr',
     result: '.r',
     resultsLink: '.rL',
     copyPasteLink: '#copy_paste_links'
@@ -49,16 +49,20 @@ var Filestube_API = (function() {
           // more than 1 page of results
           if (d.querySelector(cssSelectors.pagination)) {
             // So let's calculate how many links (<a> elements) are in the
-            // pagination panel
+            // pagination paneles
             pages = d.querySelector(cssSelectors.pagination)
                      .querySelectorAll('a').length;
+
+            // Current page is unclickable SPAN element, not a link, so we
+            // need to increment final number of the pages
+            pages++;
 
             // If we don't want to parse all the pages of results (for
             // instance - we are interested just in one result), then let's
             // limit number of pages
             pages = Math.min(maxPages, pages);
           } else {
-            // If pagination panel is not present in the ODM three of the
+            // If pagination panel is not present in the DOM three of the
             // result page it means we have just one page of results
             pages = 1;
           }
@@ -191,6 +195,8 @@ var Filestube_API = (function() {
   // Works similar to getOne but we parse all of the results for all of
   // the pages
   var getAll = function(phrase, options, callback){
+    // restart some base variable
+    maxPages = Infinity;
     getLinks(phrase, options, function(links){
       var finalLinks = [];
       // we need to use anysc forEach because stripFinalLink() is asynchronous
