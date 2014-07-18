@@ -17,7 +17,7 @@ module.exports = {
         data.forEach(function(element){
           assert.equal(
             element[0],
-            'http://blablabla.jczc/files/w2q9vfcl/'+
+            'http://blablabla.jczc/file/w2q9vfcl/'+
             'Zbych.Andrzej-Stawka.wieksza.niz'
           );
         });
