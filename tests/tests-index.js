@@ -8,7 +8,8 @@ var tests = [
   require('./getAll-simple-list-single-link.js'),
   require('./getAll-simple-list-multiple-links.js'),
 
-  require('./getAll-multipage-list-single-link.js')
+  require('./getAll-multipage-list-single-link.js'),
+  require('./getAll-multipage-list-multiple-links.js')
 ];
 
 // All the tests need to run synchronously, so I created this simple
