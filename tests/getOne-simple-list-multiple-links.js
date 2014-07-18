@@ -5,7 +5,7 @@ var assert = require('assert');
 
 // getOne result with multiple files
 module.exports = {
-  run: function(){
+  run: function(cb){
     TESTHELPER({
       list: require('./mocks/list-one-page'),
       final: require('./mocks/final-multiple-links'),
@@ -13,7 +13,8 @@ module.exports = {
       options: {},
       assert: function(data){
         assert.equal(data.length, 5);
-      }
+      },
+      cb: cb
     });
   }
 };
