@@ -193,6 +193,7 @@ var Filestube_API = (function() {
   var getAll = function(phrase, options, callback){
     getLinks(phrase, options, function(links){
       var finalLinks = [];
+      // we need to use anysc forEach because stripFinalLink() is asynchronous
       async.forEach(links, function(singleLink, cb){
         stripFinalLink(singleLink, function stripFinal_cb(resultLink){
           if (resultLink !== 0) {
@@ -201,10 +202,13 @@ var Filestube_API = (function() {
                 return element;
               }
             }));
+            // We call this callback here to let async.forEach() know that we
+            // are done with this particular element and we want to grab the
+            // next one.
             cb();
           }
         });
-      }, function(){
+      }, function() { // this callback is called what all the elements are done
         callback(finalLinks);
       });
     });
