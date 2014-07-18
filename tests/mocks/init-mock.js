@@ -1,15 +1,16 @@
 'use strict';
 
-var Nock = require('nock');
-var nock = Nock('http://www.filestube.to');
+var nock = require('nock');
 
-
-
-var initMock = function(list, final) {
-  nock.get('/query.html?q=stawka+wieksza+niz+zycie')
+var initMock = function(list, final, repetitions) {
+  repetitions = repetitions || 1;
+  nock('http://www.filestube.to')
+  .get('/query.html?q=stawka+wieksza+niz+zycie')
   .reply(200, list);
 
-  nock.get('/details.html').once()
+  nock('http://www.filestube.to')
+  .get('/details.html')
+  .times(repetitions)
   .reply(200, final);
 };
 
