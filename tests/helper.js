@@ -6,7 +6,8 @@ var initMock = require('./mocks/init-mock.js');
 module.exports = function(options) {
   initMock(
     options.list,
-    options.final
+    options.final,
+    options.repetitions
   );
 
   FilestubeAPI[options.testedMethod](
@@ -15,7 +16,7 @@ module.exports = function(options) {
     function(data){
       options.assert(data);
       if (typeof options.cb === 'function') {
-        options.cb();  
+        options.cb();
       }
     }
   );
