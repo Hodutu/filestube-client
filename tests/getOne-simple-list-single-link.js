@@ -5,7 +5,7 @@ var assert = require('assert');
 
 // getOne result with only one file
 module.exports = {
-  run: function(){
+  run: function(cb) {
     TESTHELPER({
       list: require('./mocks/list-one-page'),
       final: require('./mocks/final-single-link'),
@@ -17,7 +17,8 @@ module.exports = {
           data[0],
           'http://blablabla.jczc/file/w2q9vfcl/Zbych.Andrzej-Stawka.wieksza.niz'
         );
-      }
+      },
+      cb: cb
     });
   }
 };

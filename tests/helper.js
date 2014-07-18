@@ -12,6 +12,11 @@ module.exports = function(options) {
   FilestubeAPI[options.testedMethod](
     'stawka wieksza niz zycie',
     options.options || {},
-    options.assert
+    function(data){
+      options.assert(data);
+      if (typeof options.cb === 'function') {
+        options.cb();  
+      }
+    }
   );
 };

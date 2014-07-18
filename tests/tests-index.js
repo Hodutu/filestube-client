@@ -1,5 +1,19 @@
 'use strict';
 
-var test1 = require('./getOne-simple-list-single-link.js');
+var tests = [
+  require('./getOne-simple-list-single-link.js'),
+  require('./getOne-simple-list-multiple-links.js')
+];
 
-test1.run();
+var runTest = function(index) {
+  var cb = function(){};
+  if (index < tests.length) {
+    cb = function() {
+      index++;
+      runTest(index);
+    };
+  }
+  tests[index].run(cb);
+};
+
+runTest(0);
