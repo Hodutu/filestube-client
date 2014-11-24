@@ -80,6 +80,22 @@ filestube.getAll("Stawka wieksza niz zycie", {type: "mkv"}, function(links) {
   //   [ 'http://yoelo.jczc.hwdp/03l1d169voq0' ]
   // ]
 });
+
+// to get all available host
+filestube.getAllHost(function(host){
+	console.log(host);
+});
+
+//[ { key: '117', name: '180upload' },
+//  { key: '70', name: '2shared' },
+//  { key: '23', name: '4shared' },
+//  { key: '111', name: 'Allmyvideos' }, ...]
+
+// to get file by host (here, rapidgator & uploaded)
+filestube.getAll("debian", {type: "pdf", {type: "pdf", hosts: ['64', '24']}, function(links) {
+  console.log(links);
+}
+
 ```
 
 ### To Do ###

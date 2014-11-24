@@ -25,10 +25,15 @@ var Filestube_API = (function() {
 
   // Selectors (ids and classes) for the DOM element of filestube.to page.
   var cssSelectors = {
+	// Links
     pagination: '.pgr',
     result: '.r',
     resultsLink: '.rL',
-    copyPasteLink: '#copy_paste_links'
+    copyPasteLink: '#copy_paste_links',
+    // Hosts
+    searchHost: '.searchable',
+    checkboxHost: '.hosting_checkbox',
+    searchHostName: 'span'
   };
 
   // This function parses the content of the main search page (the one with all
@@ -132,6 +137,18 @@ var Filestube_API = (function() {
     if (options.size) {
       reqOptions += '&size=' + options.size;
     }
+    
+    if (options.hosts) {
+    	var hosts = options.hosts;
+    	if(hosts instanceof Array){
+    		reqOptions += '&hosting=' + hosts[0];
+    		for (var i = 1; i < hosts.length; i++) {
+    			reqOptions += '%2C' + hosts[i];
+    		}
+    	} else {
+    		reqOptions += '&hosting=' + hosts;
+    	}
+    }
 
     // Create proper URL to ask for the content
     url = url + term + reqOptions;
@@ -219,10 +236,50 @@ var Filestube_API = (function() {
       });
     });
   };
+  
+
+  // Get all available host
+  var getAllHost = function(){
+	  // The URL to get all available host filter.
+	  var urlForHost = url+'gethost';
+	  // Using jsdom we ask for the page on the given address.
+	    jsdom.env({
+	      url: urlForHost,
+	      done: function(err, window) {
+	        var d = window.document;
+	        // This Array will store all the host and their key code.
+	        var hosts = [];
+	        
+	        // Let's grab available host from the page...
+	        var results = d.querySelectorAll(cssSelectors.searchHost);
+
+	        // ... and iterate through them.
+	        for (var i = 0, j = results.length; i< j; i++) {
+	          var result = results[i];
+
+	          // Find the host value
+	          var hostValue = result.querySelector(cssSelectors.checkboxHost);
+	          
+	          // Find the hostname
+	          var hostName = result.getElementsByTagName(cssSelectors.searchHostName);
+
+	          // Add the host to the Array
+	          if(hostValue != null){
+	        	  var host = {};
+	        	  host['key'] = hostValue.value;
+	        	  host['name'] = hostName[0].innerHTML;
+	        	  hosts.push(host);
+	          }
+	        }
+	        return hosts;
+	      }
+	    });
+  };
 
   return {
     getOne: getOne,
-    getAll: getAll
+    getAll: getAll,
+    getAllHost: getAllHost
   };
 })();
 
