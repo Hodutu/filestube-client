@@ -60,7 +60,7 @@ var Filestube_API = (function() {
 
             // Current page is unclickable SPAN element, not a link, so we
             // need to increment final number of the pages
-            pages++;
+            //pages++;
 
             // If we don't want to parse all the pages of results (for
             // instance - we are interested just in one result), then let's
