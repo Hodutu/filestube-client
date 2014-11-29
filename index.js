@@ -208,11 +208,11 @@ var Filestube_API = (function() {
                 return element;
               }
             }));
-            // We call this callback here to let async.forEach() know that we
-            // are done with this particular element and we want to grab the
-            // next one.
-            cb();
           }
+          // We call this callback here to let async.forEach() know that we
+          // are done with this particular element and we want to grab the
+          // next one.
+          cb();
         });
       }, function() { // this callback is called what all the elements are done
         callback(finalLinks);
