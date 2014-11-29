@@ -1,6 +1,6 @@
 {
   "name": "filestube-client",
-  "version": "0.2.0",
+  "version": "0.5.0",
   "author": "Michal Budzynski<michal@virtualdesign.pl>",
   "repository": "https://github.com/michalbe/filestube-client",
   "dependencies": {
