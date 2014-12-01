@@ -1,7 +1,7 @@
 # filestube-client by [@michalbe](http://github.com/michalbe) #
 [doesn't work anymore] Scraper for the file search engine - filestube.to
 
-### on 01.12.2014 FILESTUBE.COM changed to shitty hipster shows hosting crapsite. It's not a filesearch engine anymore, hence this package is useless ##
+### On 01.12.2014 FILESTUBE.COM became shitty hipster shows hosting crapsite. It's not a filesearch engine anymore, hence this package is useless ##
 
 ### What? ###
 Filestube-client is a simple scraper for [filestube.to](http://filestube.to), biggest file search engine in the web.
