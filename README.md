@@ -1,7 +1,7 @@
 # filestube-client by [@michalbe](http://github.com/michalbe) #
-[doesn't work anymore] Scraper for the file search engine - filestube.to
+[doesn't work anymore, use gimme-files instead] Scraper for the file search engine - filestube.to
 
-### Use [gimme-files](https://www.npmjs.org/package/gimme-files) instead of this. ###
+### Use [gimme-files](https://www.npmjs.org/package/gimme-files) instead ###
 
 ### On 01.12.2014 FILESTUBE.COM became shitty hipster shows hosting crapsite. It's not a filesearch engine anymore, hence this package is useless ###
 
